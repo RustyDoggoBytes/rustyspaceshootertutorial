@@ -14,6 +14,11 @@ extends Node2D
 @onready var hit_sound = $SFX/HitSound
 @onready var explode_sound = $SFX/ExplodeSound
 
+
+@onready var music_1 = $Music
+@onready var music_2 = $Music2
+var music_2_on = false
+
 var player = null
 var score := 0:
 	set(value):
@@ -56,6 +61,11 @@ func _process(delta):
 	pb.scroll_offset.y += delta*scroll_speed
 	if pb.scroll_offset.y >= 960:
 		pb.scroll_offset.y = 0
+		
+	if score > 2000 and not music_2_on:
+		music_1.stop()
+		music_2.play()
+		music_2_on = true
 
 func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()
@@ -83,6 +93,9 @@ func _on_player_killed():
 	explode_sound.play()
 	gos.set_score(score)
 	gos.set_high_score(high_score)
+	music_1.stop()
+	music_2.stop()
+	gos.play_gameover()
 	save_game()
 	await get_tree().create_timer(1.5).timeout
 	gos.visible = true

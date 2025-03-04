@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6uejmh8c7koe"]
+[gd_scene load_steps=8 format=3 uid="uid://c6uejmh8c7koe"]
 
-[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_g2wiu"]
+[ext_resource type="Script" uid="uid://dhq1ah0scdge8" path="res://scripts/game_over_screen.gd" id="1_g2wiu"]
 [ext_resource type="FontFile" uid="uid://bhr2rhqo8dmnd" path="res://assets/fonts/Kenney Future.ttf" id="1_npbix"]
+[ext_resource type="AudioStream" uid="uid://dvcydt3ftyd6o" path="res://assets/audio/gameover.ogg" id="3_jw6e5"]
+[ext_resource type="PackedScene" uid="uid://k5hl6pf1mhf2" path="res://install_sounds.tscn" id="4_wa2qn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya48v"]
 bg_color = Color(0, 0.45098, 0.6, 1)
@@ -116,5 +118,11 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_npbix")
 theme_override_font_sizes/font_size = 35
 text = "RETRY"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jw6e5")
+
+[node name="InstallSounds" parent="." instance=ExtResource("4_wa2qn")]
+root_path = NodePath("..")
 
 [connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]

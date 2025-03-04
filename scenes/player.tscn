@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ceuh25br64vvt"]
 
 [ext_resource type="Texture2D" uid="uid://bhvftiiome0m8" path="res://assets/textures/playerShip1_blue.png" id="1_kexam"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_pl1ct"]
+[ext_resource type="Script" uid="uid://di6l27i7ifawi" path="res://scripts/player.gd" id="1_pl1ct"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 2
